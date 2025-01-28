@@ -55,7 +55,7 @@ export default function Todos() {
         <table>
           <thead>
             <tr>
-              <th>Todo:{todoTasks}</th>
+              <th>Todo: {todoTasks}</th>
               <th>In Progress: {inProgressTasks}</th>
               <th>Done: {doneTasks}</th>
             </tr>
