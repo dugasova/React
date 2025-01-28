@@ -1,0 +1,36 @@
+.todos {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+table {
+    border: 2px dotted;
+    margin: 0 auto;
+    padding: 2px;
+}
+
+tr {
+    width: 100%;
+}
+
+td {
+    border: 1px solid #000;
+    width: 33.3%;
+    padding: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 5px;
+}
+
+button {
+    margin: 5px;
+    padding: 5px;
+}
