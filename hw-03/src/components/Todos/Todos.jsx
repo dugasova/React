@@ -45,7 +45,9 @@ export default function Todos() {
       console.error(error);
     }
   };
-
+  const todoTasks = todos.filter((task) => task.status === STATUS_TODO).length;
+  const inProgressTasks = todos.filter((task) => task.status === STATUS_IN_PROGRESS).length;
+  const doneTasks = todos.filter((task) => task.status === STATUS_DONE).length;
 
   return (
     <div className="todos">
@@ -53,9 +55,9 @@ export default function Todos() {
         <table>
           <thead>
             <tr>
-              <th>Todo</th>
-              <th>In Progress</th>
-              <th>Done</th>
+              <th>Todo:{todoTasks}</th>
+              <th>In Progress: {inProgressTasks}</th>
+              <th>Done: {doneTasks}</th>
             </tr>
           </thead>
           <tbody>
