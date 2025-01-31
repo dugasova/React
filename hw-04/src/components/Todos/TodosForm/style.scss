@@ -1,0 +1,53 @@
+.todo-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    border: 1px solid black;
+    padding: 20px;
+    margin-bottom: 10px;
+    width: 30%;
+}
+
+
+.todo-form input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+}
+.formbtn {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #e6e6ef;
+    font-size: 20px;
+    font-weight: 500;
+    &:hover {
+        background-color: #e3eded;
+    }
+
+}
+fieldset {
+    display: flex;
+    flex-direction: column;
+    border: 1px dashed black;
+    padding: 20px;
+}
+
+.legend {
+    font-size: 24px;
+    font-weight: 700;
+}
+label {
+  font-size: 24px;
+  font-weight: 500;
+}
+select {
+    width: 100%;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #e6e6ef;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 10px 0;
+}
