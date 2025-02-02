@@ -17,7 +17,7 @@ export default function TodosForm({ liftingNewTask }) {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     liftingNewTask(newTask);
-    setNewTask({ title: "", status: ON_HOLD });
+    setNewTask({ title: "", status: STATUS_TODO, });
   };
 
   return (
