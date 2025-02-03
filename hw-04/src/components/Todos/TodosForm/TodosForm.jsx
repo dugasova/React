@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { STATUS_TODO, STATUS_IN_PROGRESS, STATUS_DONE, NEW_TASK_DEFAULT, ON_HOLD } from "../../../constats/todos";
+import { STATUS_TODO, STATUS_IN_PROGRESS, STATUS_DONE, NEW_TASK_DEFAULT } from "../../../constats/todos";
 import "./style.scss";
 import Button from "../../Button/Button";
 
@@ -24,20 +24,20 @@ export default function TodosForm({ liftingNewTask }) {
     <form className="todo-form" onSubmit={handleFormSubmit}>
       <fieldset>
         <legend className="legend">Create task</legend>
-      <label>
-        Title:
-        <input type="text" onChange={handleFormTitle} value={newTask.title} required />
-      </label>
-      <label>
-        Status:
-        <select onChange={handleFormStatus} value={newTask.status}>
-          <option value={STATUS_TODO}>To Do</option>
-          <option value={STATUS_IN_PROGRESS}>In Progress</option>
-          <option value={STATUS_DONE}>Done</option>
-        </select>
-      </label>
-      <Button className="formbtn" type="submit" title="Add Task"/>
-    </fieldset>
+        <label>
+          Title:
+          <input type="text" onChange={handleFormTitle} value={newTask.title} required />
+        </label>
+        <label>
+          Status:
+          <select onChange={handleFormStatus} value={newTask.status}>
+            <option value={STATUS_TODO}>To Do</option>
+            <option value={STATUS_IN_PROGRESS}>In Progress</option>
+            <option value={STATUS_DONE}>Done</option>
+          </select>
+        </label>
+        <Button className="formbtn" type="submit" title="Add Task" />
+      </fieldset>
     </form>
   );
 }
