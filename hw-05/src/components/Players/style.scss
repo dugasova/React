@@ -1,0 +1,22 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.players {
+    display: flex;
+    width: fit-content;
+    // justify-content: space-between;
+    padding-top: 20px;
+}
+
+.players-btn {
+    margin-top: 40px;
+    align-self: center;
+    padding: 20px;
+    font-size: large;
+    font-weight: 400;
+}
