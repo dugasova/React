@@ -1,6 +1,15 @@
 import { useEffect, useReducer } from 'react';
 import { reducer, INITIAL_STATE } from "../store/player/reducer";
-import { PLAYERS_COUNT_SUBMIT, SET_ERROR_MESSAGE, SET_PLAYER_INFO, SET_PLAYERS_SELECTED, SET_PLAYER_NAME, SET_RESET_PLAYER, SET_WINNER_INFO, RESET_BATTLE } from "./../store/player/actions";
+import {
+  PLAYERS_COUNT_SUBMIT,
+  SET_ERROR_MESSAGE,
+  SET_PLAYER_INFO,
+  SET_PLAYERS_SELECTED,
+  SET_PLAYER_NAME,
+  SET_RESET_PLAYER,
+  SET_WINNER_INFO,
+  RESET_BATTLE
+} from "./../store/player/actions";
 import { actionCreator } from "../store/store";
 import service from '../sevices/players';
 
@@ -40,7 +49,7 @@ export default function usePlayers() {
     try {
       const responses = await Promise.all(
         statePlayers.players.map((player) =>
-          service.getUserRepos(player.username)
+          service.getUserRepos(player.data.login)
         )
       );
 
@@ -49,51 +58,32 @@ export default function usePlayers() {
         const followers = statePlayers.players[index].data.followers;
         const totalScore = followers + reposStars;
         return {
-          repos: response.length,
           followers: followers,
           reposStars: reposStars,
-          totalScore: totalScore
+          totalScore: totalScore,
+          id: statePlayers.players[index].id
         };
       });
-      dispatch(actionCreator(SET_PLAYER_INFO, additionalData));
 
-      const { winner, loser } = calculateBattleResults(statePlayers.players);
-      console.log("winner, loser", winner, loser)
-      dispatch(actionCreator(SET_WINNER_INFO, { winner, loser }))
+      dispatch(actionCreator(SET_PLAYER_INFO, additionalData));
+      const sortedPlayers = additionalData.sort((a, b) => b.totalScore - a.totalScore);
+      const winner = sortedPlayers[0].id;
+      dispatch(actionCreator(SET_WINNER_INFO, winner))
     } catch (err) {
       console.log(err);
     }
   };
 
-  const calculateBattleResults = (players) => {
-    console.log("Players:", players)
-    const sortedPlayers = players.sort((a, b) => b.additionalData.totalScore - a.additionalData.totalScore);
-    console.log("Winners:", sortedPlayers)
-    const winner = sortedPlayers[0];
-    const loser = sortedPlayers[sortedPlayers.length - 1];
-    console.log("winner", winner)
-    return { winner, loser }
-
-  }
-
   const restartBattle = () => {
     dispatch(actionCreator(RESET_BATTLE));
   }
 
-  useEffect(() => {
-    if (statePlayers.playersAmountSubmit) {
-      getPlayers()
-    }
-  }, [statePlayers.playersAmountSubmit])
-
   return {
     statePlayers,
-
     playersAmountSubmit,
     setPlayerName,
     resetPlayer,
     startBattle,
-    calculateBattleResults,
     restartBattle
   }
 }

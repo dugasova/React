@@ -17,12 +17,17 @@ export default function PlayersAmount() {
   return (
     <form className='player__amount' onSubmit={handleSubmit}>
       <label>Count of Players
-        <input type="number" defaultValue={statePlayers.playersCount} ref={inputPlayersCount} />
+        <input
+          type="number"
+          min="2" max="6" 
+          defaultValue={statePlayers.playersCount}
+          ref={inputPlayersCount} 
+        />
       </label>
       <Button
         title="Sudmit"
         className="player__amount-submit"
-        handleClick={() => console.log("clicked")} />
+      />
     </form>
   )
 }

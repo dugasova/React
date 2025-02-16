@@ -8,9 +8,9 @@ export default function PlayersCardForm({ item, index }) {
 
   const usernameInput = useRef();
   
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    setPlayerName({
+    await setPlayerName({
       id: item.id,
       username: usernameInput.current.value
     });
@@ -19,7 +19,7 @@ export default function PlayersCardForm({ item, index }) {
   return (
     <form className="player__card-form" onSubmit={handleSubmit}>
       <label>Choose Player {index + 1} username
-        <input type="text" placeholder={`Player ${index + 1}`} ref={usernameInput} />
+        <input type="text" placeholder={`Player ${index + 1}`} ref={usernameInput} required/>
         {item.errorMessage && (
           <h2 className='error-message'>{item.errorMessage}</h2>
         )}

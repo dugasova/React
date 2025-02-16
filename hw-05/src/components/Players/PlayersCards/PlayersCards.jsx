@@ -5,8 +5,7 @@ import PlayersCard from '../PlayersCard/PlayersCard';
 import Button from '../../Button/Button';
 
 export default function PlayersCards() {
-  const { statePlayers, startBattle } = useContext(PlayersContext)
-  console.log(statePlayers);
+  const { statePlayers, startBattle, restartBattle } = useContext(PlayersContext)
   return (
     <>
       <div className='players__cards'>
@@ -14,11 +13,14 @@ export default function PlayersCards() {
           <PlayersCard key={index} item={item} index={index} />
         ))}
       </div>
-      {statePlayers.playersSelected && (
+      {statePlayers.playersSelected && !statePlayers.isBattleStarted && (
         <div>
-          <Button title="Start Battle" handleClick={startBattle} className='players__cards-battle'/>
+          <Button title="Start Battle" handleClick={startBattle} className='players__cards-battle' />
         </div>
       )}
+      <div>
+        {statePlayers.isBattleStarted && (<Button title="RESTART 🔄" handleClick={restartBattle} className='players__cards-battle' />)}
+      </div>
     </>
   )
 }

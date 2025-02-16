@@ -69,7 +69,7 @@ const reducer = (state = INITIAL_STATE, { type, payload }) => {
       }
 
     case SET_WINNER_INFO:
-      return {...state, battlePlayers: payload}
+      return { ...state, winnerId: payload }
 
     case RESET_BATTLE: {
       return INITIAL_STATE;
