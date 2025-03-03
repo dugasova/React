@@ -1,19 +1,27 @@
 import { Link } from "react-router-dom";
-import useCountrisForm from "../../hooks/useCountrisForm";
 import Button from "../Button/Button";
 import "./style.scss";
+import useCountries from "../../hooks/useCountries";
+import useCountry from "../../hooks/useCountry";
 
 export default function CountriesList() {
-  const { countriesList, deleteCountry } = useCountrisForm();
+  const { countries } = useCountries();
+  const { deleteCountry } = useCountry();
+
+  const handleDelete = (ind) => {
+    deleteCountry(ind);
+  };
+
+
   return (
-    countriesList.length ? (
+    countries.length ? (
       <div className="countries__list">
         <h2>Countries</h2>
         <ul>
-          {countriesList.map((country, ind) => (
-            <li key={ind}>
-              <Link to={`/country/${ind}`}>{country.flag}  {country.name.official}</Link>
-              <Button className="btn-delete" title="DELETE" handleClick={() => deleteCountry(ind)} />
+          {countries.map((country) => (
+            <li key={country.id}>
+              <Link to={`/country/${country.id}`}>{country.flag}  {country.name.official}</Link>
+              <Button className="btn-delete" title="DELETE" handleClick={() => handleDelete(country.id)} />
             </li>
           ))}
         </ul>

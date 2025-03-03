@@ -1,6 +1,6 @@
 import { useParams, useSearchParams, useNavigate } from "react-router-dom";
-import useCountrisForm from "../../hooks/useCountrisForm";
 import './style.scss';
+import useCountry from "./../../hooks/useCountry"
 
 export default function CountryInfo() {
   const { id } = useParams();
@@ -8,7 +8,7 @@ export default function CountryInfo() {
   const [searchParams] = useSearchParams();
   const translation = searchParams.get(`trans`);
 
-  const { countriesList, deleteCountry } = useCountrisForm();
+  const { selectedCountry, deleteCountry } = useCountry(id);
 
   const navigation = useNavigate();
 
@@ -45,17 +45,17 @@ export default function CountryInfo() {
   };
 
   return (
-    id && countriesList.length > 0 ? (
+    selectedCountry ? (
       <div className="country__info">
         <h3>
-          {translation && countriesList[id].translations[translation]
-            ? countriesList[id].translations[translation].official
-            : countriesList[id].name.official
+          {translation && selectedCountry.translations[translation]
+            ? selectedCountry.translations[translation].official
+            : selectedCountry.name.official
           }
         </h3>
 
         <ul>
-          {renderProperties(countriesList[id])}
+          {renderProperties(selectedCountry)}
           <li><button className="btn_delete" onClick={handleDelete}>Delete Country</button></li>
         </ul>
       </div>
